@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from "react";
 
 // Configuración de la hoja de sprites
-const FRAME_WIDTH = 64; // tamaño de cada cuadro individual
-const FRAME_COUNT = 4;   // solo los primeros 4 cuadros para la caminata
-const ANIMATION_SPEED = 150; // Milisegundos por frame
-const SPRITESHEET_WIDTH = FRAME_WIDTH * 6; // Ancho total físico de la spritesheet de 6 frames
+const FRAME_COUNT = 5; // cuadros visibles que se usarán en la animación
+const SPRITESHEET_FRAME_COUNT = 6; // cuadros totales en la hoja original
+const ANIMATION_SPEED = 750; // Milisegundos por frame para una caminata pausada
+const SPRITE_SCALE = 4.0; // Escala visual para que encaje mejor con el paisaje
+
+const DISPLAY_SIZE = Math.round(64 * SPRITE_SCALE);
 
 export const CeratiSprite = () => {
   const [currentFrame, setCurrentFrame] = useState(0);
@@ -24,13 +26,14 @@ export const CeratiSprite = () => {
     <div className="relative group">
       {/* Sprite animado */}
       <div 
-        className="w-[64px] h-[64px] pixelated"
+        className="pixelated bg-no-repeat"
         style={{
-          backgroundImage: `url('/sprites/cerati-walk.png')`,
-          // Mueve la hoja de sprites horizontalmente
-          backgroundPosition: `-${currentFrame * FRAME_WIDTH}px 0px`,
-          // Asegurar que el fondo escale para mostrar un solo cuadro
-          backgroundSize: `${SPRITESHEET_WIDTH}px ${FRAME_WIDTH}px`,
+          width: `${DISPLAY_SIZE}px`,
+          height: `${DISPLAY_SIZE}px`,
+          backgroundImage: `url('/sprites/cerati-walk1.png')`,
+          // Posicionado porcentual para evitar recortes por redondeo en el 5to frame
+          backgroundPosition: `${(currentFrame / (SPRITESHEET_FRAME_COUNT - 1)) * 100}% 0%`,
+          backgroundSize: `${SPRITESHEET_FRAME_COUNT * 100}% 100%`,
           imageRendering: "pixelated", // asegura que se mantenga el estilo pixel art al escalar
         }}
       />
