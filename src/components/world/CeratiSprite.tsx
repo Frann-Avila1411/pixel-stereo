@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 
 // Configuración de la hoja de sprites
-const FRAME_COUNT = 5; // cuadros visibles que se usarán en la animación
+const FRAME_COUNT = 6; // cuadros visibles que se usarán en la animación
 const SPRITESHEET_FRAME_COUNT = 6; // cuadros totales en la hoja original
 const ANIMATION_SPEED = 750; // Milisegundos por frame para una caminata pausada
 const SPRITE_SCALE = 4.0; // Escala visual para que encaje mejor con el paisaje
@@ -30,7 +30,7 @@ export const CeratiSprite = () => {
         style={{
           width: `${DISPLAY_SIZE}px`,
           height: `${DISPLAY_SIZE}px`,
-          backgroundImage: `url('/sprites/cerati-walk1.png')`,
+          backgroundImage: `url('/sprites/cerati-walk2.png')`,
           // Posicionado porcentual para evitar recortes por redondeo en el 5to frame
           backgroundPosition: `${(currentFrame / (SPRITESHEET_FRAME_COUNT - 1)) * 100}% 0%`,
           backgroundSize: `${SPRITESHEET_FRAME_COUNT * 100}% 100%`,
